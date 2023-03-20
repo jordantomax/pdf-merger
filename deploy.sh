@@ -12,7 +12,7 @@ function check_ok () {
 function zip_lambda ()
 {
   echo "Zipping dependencies"
-  cd venv/lib/python3.9/site-packages
+  cd venv/lib/python3.11/site-packages
   zip -r ../../../../deployment_package.zip .
   cd ../../../../
 
