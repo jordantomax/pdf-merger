@@ -1,4 +1,4 @@
-from PyPDF2 import PdfFileMerger, PdfFileReader
+from PyPDF2 import PdfMerger, PdfReader
 from urllib.request import urlopen
 
 from io import BytesIO
@@ -14,12 +14,12 @@ def handler(event, context):
             'body': 'Malformed body. Body must consist of a json object containing a key "pdf_urls" with value as an array of strings'
         }
 
-    pdf_merged = PdfFileMerger()
+    pdf_merged = PdfMerger()
 
     for url in pdf_urls:
         pdf_file = urlopen(url).read()
         memory_file = BytesIO(pdf_file)
-        pdf_merged.append(PdfFileReader(memory_file))
+        pdf_merged.append(PdfReader(memory_file))
 
     pdf_merged.write('/tmp/merged.pdf')
 
